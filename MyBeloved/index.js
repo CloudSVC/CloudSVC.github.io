@@ -61,9 +61,25 @@ function progress(){
 				// 重置歌曲
 				document.getElementById('audio').src= BGM_url
 			}
+			setInterval(function (){
+				var date = new Date();
+				var H = date.getHours();
+				var M = date.getMinutes();
+				if(H <= 9){
+					H = "0" + H;
+				}
+				if(M <= 9){
+					M = "0" + M;
+				}
+				document.getElementById("wechat_time").innerHTML = H + ":" + M;
+			},1000);
 		}
 	};
 	xhttp.open("GET", "music.json", true);
 	xhttp.send();
 	document.getElementById('audio').src= BGM_url
+}
+function check() {
+	var input = document.getElementById("input1").value;
+	console.log(input);
 }

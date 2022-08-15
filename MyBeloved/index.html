@@ -13,13 +13,54 @@
 			<div id="GetStart">
 				<audio autoplay="autoplay" id='audio'></audio>
 				<div id="love_time">今天是爱上徐小姐的<span id="time" style="font-size: 80px;"></span>天</div>
-				<div id="love_content"></div>
+				<div id="love_content">
+					<div id="wechat">
+						<div id="wechat_head">
+							<span id="wechat_time"></span>
+							<span id="wechar_power"><img src="https://user-images.githubusercontent.com/93499895/184626108-042b70a2-49e7-4013-89c4-67adb9d34aa0.png" style="width: 40px;height: 10px; position: absolute;right: 10px;top: 9px;"></span>
+							<span id="wechar_signal"><img src="https://user-images.githubusercontent.com/93499895/184641124-5d3d0d42-6c0b-44f7-9442-b9cb69dacaf0.png" style="width: 45px;height: 10px; position: absolute;right: 55px;top: 9px;"></span>
+						</div>
+						<div id="wechar_name">
+							<span style="position: absolute; left: 8px; top: 5px;"><img src="https://user-images.githubusercontent.com/93499895/184627358-1522b17f-92fd-4c8e-af19-8bd82953e8c1.png" width="10px" height="22px"></span>
+							<span style="line-height: 30px; margin: 0 auto; display: block; width: 80px;font-weight: 600;">暖暖的太阳</span>
+						</div>
+						<hr style="background-color: rgba(255,255,255,1);margin-top: 8px;">
+						<div id="wechar_content">
+							<div id="message" class="animate__animated animate__fadeInUp">
+								<div id="portrait"></div>
+								<div id="message1">你好，徐小姐</div>
+							</div>
+							<div id="message" class="animate__animated animate__fadeInUp">
+								<div id="portrait"></div>
+								<div id="message1" style="width: 210px; background-size: 210px 30px;">还记得吗，我说过要给你一个惊喜</div>
+							</div>
+							<div id="message" class="animate__animated animate__fadeInUp">
+								<div id="portrait"></div>
+								<div id="message1" style="width: 160px; background-size: 160px 30px;">就是现在这个表白网站哦</div>
+							</div>
+							<div id="message" class="animate__animated animate__fadeInUp">
+								<div id="portrait"></div>
+								<div id="message1" style="width: 210px; background-size: 210px 30px;">我想说，往后余生我都想在你身边</div>
+							</div>
+							<div id="message" class="animate__animated animate__fadeInUp">
+								<div id="portrait"></div>
+								<div id="message1" style="width: 185px; background-size: 185px 30px;">那么，你愿意跟我在一起吗？</div>
+							</div>
+						</div>
+						<div id="wechar_input">
+							<div id="portrait" style="border-radius: 5px;"></div>
+							<input type="text" name="love_input" id="input1" value="我愿意" />
+							<input type="button" name="love_button" id="button1" value="发送" onclick="check()"/>
+						</div>
+					</div>
+				</div>
 				<div id="lrc_div" style="position: fixed; bottom: 10px;"></div>
-				<div id="bottom">
+				<!-- 已被抛弃 -->
+				<!-- <div id="bottom">
 					<h1 class="animate__animated animate__bounce">
 						<img src="https://user-images.githubusercontent.com/93499895/174315954-3fc5d60c-4cbd-45a2-8fe2-7ededd3196b7.png" >
 					</h1>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		
