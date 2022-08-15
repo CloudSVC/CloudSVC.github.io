@@ -81,5 +81,9 @@ function progress(){
 }
 function check() {
 	var input = document.getElementById("input1").value;
-	console.log(input);
+	if(input == "我愿意"){
+		alert("开发中哦！！");
+	}else {
+		alert("开发中！！");
+	}
 }
