@@ -5,11 +5,22 @@ window.onload = function () {
 	year = date.getFullYear(); //得到年份
 	month = date.getMonth() + 1; //得到月份
 	day = date.getDate(); //得到日期
-	BGM_url = "./暖暖.mp3"
-	test()
-	progress()
+	BGM_url = "./暖暖.mp3";
+	document.getElementById('audio').src= BGM_url;
+	// setInterval(function() {
+	// 	var width = window.screen.width;
+	// 	var height = window.screen.height;
+	// 	if (width < 800){
+	// 		document.getElementById("app").style.width = "100%";
+	// 		document.getElementById("app").style.height = height + "px";
+	// 	}else {
+	// 		document.getElementById("app").style.width = "600px";
+	// 	}
+	// },100);
+	afterTime();
+	progress();
 }
-function test() {
+function afterTime() {
 	BirthDay=new Date("July 10,2022");//改成你的计时日期
 	today=new Date();
 	timeold=(today.getTime()-BirthDay.getTime());
