@@ -10,23 +10,24 @@ nav.style.display="none";
 app.style.display="none";
 head.style.display="none";
 mobile_head.style.display="none";
-tables.style.transform= "translateX("+ "-250px" +")";
+tables.style.transform= "translateX("+ "-280px" +")";
 
 // 	document.getElementById("body").style.backgroundColor="rgba(146,182,213)";
 window.onload=function(){
-	// setTimeout(function(){
-	// 	document.getElementById("loading").style.display="none";
-	// 	app.style.display="";
-	// 	head.style.display="";
-	// 	nav.style.display="";
-	// },1500)
 	setTimeout(function(){
 		document.getElementById("loading").style.display="none";
 		app.style.display="";
 		head.style.display="";
 		nav.style.display="";
 		mobile_head.style.display="";
-	},10)
+	},1500)
+	// setTimeout(function(){
+	// 	document.getElementById("loading").style.display="none";
+	// 	app.style.display="";
+	// 	head.style.display="";
+	// 	nav.style.display="";
+	// 	mobile_head.style.display="";
+	// },10)
 }
 window.onscroll = function() {
 	// 获取滚动条向下拉上方遮盖多少像素
@@ -43,7 +44,7 @@ function turn_on() {
 	document.getElementById("switch").style.backgroundImage="url('./images/tablesuioff.png')";
 }
 function turn_off(){
-	tables.style.transform = "translateX("+ "-250px" +")";
+	tables.style.transform = "translateX("+ "-280px" +")";
 	document.getElementById("switch").getAttributeNode("onclick").value="turn_on()";
 	document.getElementById("switch").style.backgroundImage="url('./images/tablesui.png')";
 }
