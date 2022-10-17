@@ -1,0 +1,253 @@
+/* 
+Author Ny
+Version V1
+Date 22/10/16 
+*/
+/**
+ * ----------------------------------------
+ * animation https://animista.net/
+ * ----------------------------------------
+*/
+:root {
+	--app_height: 900px;
+}
+
+/* 修改body的侧边栏，对部分浏览器不生效，但是edge生效就够了 */
+body::-webkit-scrollbar{
+	width: 9px;
+}
+body::-webkit-scrollbar-thumb{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+	background: rgba(0,0,0,0.2);
+}
+body::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+	border-radius: 0;
+	background: rgba(0,0,0,0.1);
+}
+@media (min-width: 1100px) {
+	body {
+		/* background-color: rgba(146,182,213); */
+		margin: 0;
+		padding: 0;
+	}
+	#app {
+		width: 80%;
+		height: var(--app_height);
+		margin: 0 auto;
+	}
+	#head {
+		width: calc(100vw);
+		height: calc(100vh);
+	}
+	#blog{
+		width: 70%;
+		height: 290px;
+	}
+}
+
+@media (max-width: 1100px) {
+	body {
+		/* background-color: rgba(146,182,213); */
+		margin: 0;
+		padding: 0;
+	}
+	#app{
+		width: 100%;
+		height: var(--app_height);
+		margin: 0;
+	}
+	#head {
+		width: calc(100vw);
+		height: calc(100vh);
+	}
+	#blog {
+		width: 90%;
+		height: 190px;
+	}
+	#nav,#pc_titile {
+		display: none;
+	}
+}
+* {
+	user-select: none;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	cursor: url(../images/arrow.cur),auto;
+	overflow-x: hidden;
+	position: relative;
+	background-image: linear-gradient(270deg,#2dcca7,#cc6aa5,#3e91cc,#2dcca7);
+	background-size: 600% 100%;
+}
+
+
+#loading {
+	border: 3px solid hsla(185, 100%, 62%, 0.2);
+	border-top-color: #3cefff;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	animation: spin 1s linear infinite;
+	margin: 350px auto;
+	z-index: 999;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+#head {
+	overflow: hidden;
+	background: url(../images/background.jpg);
+	background-position: 50.5% 60%;
+	box-shadow: 0 10px 30px black;
+}
+#nav {
+	width: 100%;
+	height: 90px;
+	background: linear-gradient(180deg,rgb(0,0,0,.5),rgba(232, 232, 232,0));
+	position: fixed;
+	transition: all .5s;
+	z-index: 999;
+}
+#logo {
+	width: 250px;
+	height: 90px;
+	background: url(../images/logo-white.png) no-repeat;
+	/* logo */
+	background-size: 100px 90px;
+	/* logo1 */
+	/* background-size: 120px 90px; */
+	position: absolute;
+	left: 55px;
+}
+#pc_titile {
+	width: 50%;
+	height: 190px;
+	margin: 20% auto;
+	margin-bottom: 0;
+	border-radius: 50px;
+}
+.focus-in-contract{
+	animation:focus-in-contract .7s cubic-bezier(.25,.46,.45,.94) both;
+	font-size: 120px;
+	text-align: center;
+	/* color: #66A9C9; */
+	/* color: rgba(244, 244, 244, 0.9); */
+	color: rgba(255,255,255,1);
+}
+@keyframes focus-in-contract{
+	0%{
+		letter-spacing:1em;
+		filter:blur(12px);
+		opacity:0
+	}
+	75%{
+		filter:blur(6px);
+		opacity:0.5;
+	}
+	100%{
+		filter:blur(0);
+		opacity:1;
+	}
+}
+
+#introduce {
+	width: 203px;
+	align-items: center;
+	margin: 0 auto;
+}
+#introduce > span {
+	color: rgba(255,255,255,.7);
+	display: inline-block;
+	width: 100%;
+	font: bold 100% Consolas, Monaco, monospace; /*等宽字体*/
+	overflow: hidden;
+	white-space: nowrap;
+	font-weight: 500;
+	border-right: 1px solid transparent;
+	animation: typing 10s steps(23), caret .5s steps(1) infinite;
+}
+@keyframes typing{
+	from {
+		width: 0;
+	}
+}
+@keyframes caret{
+	50% {
+		border-right-color: currentColor
+	}
+}
+
+#link {
+	width: 50%;
+	height: 80px;
+	margin: 0 auto;
+	margin-top: 85px;
+	box-shadow: 10px 5px 17px black;
+	border-radius: 15px;
+}
+#link > a{
+	font-size: 15px;
+	position: absolute;
+	left: 0;
+	width: 60px;
+	cursor: url(../images/btn.cur),auto;
+	translate: all 3s;
+	opacity: .5;
+}
+
+#link > a:hover {
+	animation: jelly 0.5s;
+	opacity: 1;
+}
+@keyframes jelly {
+	0%,
+	100% {
+		transform: scale(1, 1);
+	}
+	25% {
+		transform: scale(0.9, 1.1);
+	}
+	50% {
+		transform: scale(1.1, 0.9);
+	}
+	75% {
+		transform: scale(0.95, 1.05);
+	}
+}
+
+
+
+
+#app {
+	margin-top: 5px;
+	/* background: rgb(255,255,255,.3); */
+	position: relative;
+}
+#blog {
+	/* position: absolute; */
+	margin: 0 auto;
+	margin-top: 25px;
+	box-shadow: 0 10px 30px black;
+	border-radius: 15px;
+}
+.bg-pan-left {
+	animation: bg-pan-left 50s infinite;
+}
+@keyframes bg-pan-left {
+	0% {
+		background-position: 100% 50%;
+	}
+	75% {
+		background-position: 0% 50%;
+	}
+	100% {
+		background-position: 100% 50%;
+	}
+}
