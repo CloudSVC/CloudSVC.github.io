@@ -241,13 +241,13 @@ body {
 	transition: all .5s;
 }
 #switch {
-	width: 20px;
-	height: 20px;
+	width: 40px;
+	height: 40px;
 	position: absolute;
 	left: 40px;
 	top: 40px;
 	background: url(../images/tablesui.png);
-	background-size: 20px 20px;
+	background-size: 40px 40px;
 	transform: translateX(250px);
 }
 #mobile_titile {
@@ -260,20 +260,27 @@ body {
 #log_introduce {
 	position: absolute;
 	top: 150px;
-	left: 20px;
+	left: 15px;
 }
 #mobile_button {
 	width: 100%;
 	height: 600px;
 	margin-top: 10px;
 }
-#mobile_button > div {
+#mobile_button a {
+	cursor: url(../images/btn.cur),auto;
+}
+#mobile_button a > div {
 	width: 80%;
 	height: 45px;
 	box-shadow: 2px 2px 8px -1px black;
 	margin: 0 auto;
 	border-radius: 15px;
 	margin-top: 45px;
+	cursor: url(../images/btn.cur),auto;
+}
+#mobile_button a > div:hover {
+	box-shadow: 2px 2px 15px 0 black;
 }
 
 
