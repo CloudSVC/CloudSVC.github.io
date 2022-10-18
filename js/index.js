@@ -14,20 +14,20 @@ tables.style.transform= "translateX("+ "-280px" +")";
 
 // 	document.getElementById("body").style.backgroundColor="rgba(146,182,213)";
 window.onload=function(){
-	setTimeout(function(){
-		document.getElementById("loading").style.display="none";
-		app.style.display="";
-		head.style.display="";
-		nav.style.display="";
-		mobile_head.style.display="";
-	},1500)
 	// setTimeout(function(){
 	// 	document.getElementById("loading").style.display="none";
 	// 	app.style.display="";
 	// 	head.style.display="";
 	// 	nav.style.display="";
 	// 	mobile_head.style.display="";
-	// },10)
+	// },1500)
+	setTimeout(function(){
+		document.getElementById("loading").style.display="none";
+		app.style.display="";
+		head.style.display="";
+		nav.style.display="";
+		mobile_head.style.display="";
+	},10)
 	
 	
 	// 字幕部分
@@ -59,7 +59,7 @@ function turn_off(){
 // 字幕部分
 var id = document.getElementById("intxt");
 var m_id = document.getElementById("mintxt");
-var msgs = ["All roads lead to Rome.","welcome to my websites!","I come from FuJian!  ","二次元技术宅, Devops "]
+var msgs = ["All roads lead to Rome.","技术宅拯救世界--miHoYo","welcome to my websites!","I come from FuJian!  ","二次元技术宅, Devops "]
 var msg = "All roads lead to Rome.";
 var len = msg.length;
 var txt_index = 1;
