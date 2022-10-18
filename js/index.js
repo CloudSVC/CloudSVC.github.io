@@ -28,6 +28,12 @@ window.onload=function(){
 	// 	nav.style.display="";
 	// 	mobile_head.style.display="";
 	// },10)
+	
+	
+	// 字幕部分
+	var write = setInterval(function(){
+		write_txt()
+	},200);
 }
 window.onscroll = function() {
 	// 获取滚动条向下拉上方遮盖多少像素
@@ -47,4 +53,43 @@ function turn_off(){
 	tables.style.transform = "translateX("+ "-280px" +")";
 	document.getElementById("switch").getAttributeNode("onclick").value="turn_on()";
 	document.getElementById("switch").style.backgroundImage="url('./images/tablesui.png')";
+}
+
+
+// 字幕部分
+var id = document.getElementById("intxt");
+var m_id = document.getElementById("mintxt");
+var msgs = ["All roads lead to Rome.","welcome to my websites!","I come from FuJian!  ","二次元技术宅, Devops "]
+var msg = "All roads lead to Rome.";
+var len = msg.length;
+var txt_index = 1;
+var msg_index = 0;
+
+var ind = 0;
+function write_txt() {
+	var msg1 = msg.substring(0,txt_index);
+	id.innerHTML = msg1;
+	m_id.innerHTML = msg1;
+	if(txt_index == len){
+		ind++;
+		if (ind == 16){
+			setTimeout(reload,3000);
+			ind = 0;
+		}
+		// setTimeout(reload,3000);
+	}else{
+		txt_index++;
+	}
+}
+function reload() {
+	msg_index++;
+	// console.log(msg_index);
+	if (msg_index == msgs.length){
+		msg = msgs[0];
+		msg_index = 0;
+		txt_index = 1;
+	}else {
+		msg = msgs[msg_index];
+		txt_index = 1;
+	}
 }
