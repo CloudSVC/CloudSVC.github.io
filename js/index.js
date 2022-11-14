@@ -93,3 +93,6 @@ function reload() {
 		txt_index = 1;
 	}
 }
+function blog_click(string) {
+	window.location.assign(string)
+}
