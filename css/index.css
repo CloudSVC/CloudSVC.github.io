@@ -110,7 +110,10 @@ body {
 #head {
 	overflow: hidden;
 	background: url(../images/background.jpg);
-	background-position: 50.5% 60%;
+	background-repeat: no-repeat;
+	background-size: 1600px 900px;
+	/* background-position: 50.5% 60%; */
+	background-position: 62% 60%;
 	box-shadow: 0 10px 30px black;
 }
 #nav {
@@ -292,7 +295,7 @@ body {
 	height: 80px;
 	margin: 0 auto;
 	margin-top: 85px;
-	box-shadow: 10px 5px 17px black;
+	box-shadow: 8px 8px 25px black;
 	border-radius: 15px;
 }
 #link > a{
