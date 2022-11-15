@@ -102,10 +102,10 @@ body {
 }
 #head {
 	overflow: hidden;
-	background-repeat: no-repeat;
-	background-size: 1600px 900px;
+	/* background-repeat: no-repeat; */
+	/* background-size: 1600px 900px; */
 	/* background-position: 50.5% 60%; */
-	background-position: 62% 60%;
+	/* background-position: 62% 60%; */
 	box-shadow: 0 10px 30px black;
 }
 #nav {
