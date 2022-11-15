@@ -312,6 +312,7 @@ body {
 	text-align: center;
 	line-height: 45px;
 	margin-left: 90px;
+	z-index: 1000;
 }
 #nav_button li img {
 	height: 70%;
