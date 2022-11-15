@@ -375,7 +375,7 @@ body {
 	position: absolute;
 	left: 40px;
 	top: 40px;
-	background: url(../images/tablesui.png);
+	background: url(../images/tablesui-black.png);
 	background-size: 40px 40px;
 	transform: translateX(280px);
 }

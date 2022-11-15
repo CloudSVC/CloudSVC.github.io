@@ -15,9 +15,9 @@ tables.style.transform= "translateX("+ "-280px" +")";
 window.onload=function(){
 	setTimeout(function(){
 		document.getElementById("loading").style.display="none";
-	 	app.style.display="";
+		app.style.display="";
 		head.style.display="";
-	 	nav.style.display="";
+		nav.style.display="";
 		mobile_head.style.display="";
 	},1500)
 	// setTimeout(function(){
@@ -46,12 +46,12 @@ window.onscroll = function() {
 function turn_on() {
 	tables.style.transform = "translateX("+ "0px" +")";
 	document.getElementById("switch").getAttributeNode("onclick").value="turn_off()";
-	document.getElementById("switch").style.backgroundImage="url('../../images/tablesuioff.png')";
+	document.getElementById("switch").style.backgroundImage="url('../../images/tablesuioff-black.png')";
 }
 function turn_off(){
 	tables.style.transform = "translateX("+ "-280px" +")";
 	document.getElementById("switch").getAttributeNode("onclick").value="turn_on()";
-	document.getElementById("switch").style.backgroundImage="url('../../images/tablesui.png')";
+	document.getElementById("switch").style.backgroundImage="url('../../images/tablesui-black.png')";
 }
 // 字幕部分
 var id = document.getElementById("intxt");
