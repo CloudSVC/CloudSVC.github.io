@@ -88,9 +88,21 @@ Date 22/11/16
 			</div> -->
 		</div>
 				
-		<div id="app" style="height: 13400px;">
-			<iframe src="./OpenStack.html" width="100%" height="100%" id="container"></iframe>
+		<div id="app">
+			<iframe src="./OpenStack.html" width="100%" height="100%" id="container" scrolling="no"></iframe>
 		</div>
 		<script src="../container.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			@media (min-width: 1100px) {
+				#app {
+					height: 13400px;
+				}
+			}
+			@media (max-width: 1100px) {
+				#app {
+					height: 16500px;
+				}
+			}
+		</style>
 	</body>
 </html>
