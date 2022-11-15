@@ -1,6 +1,6 @@
 // Author Ny
 // Version V1
-// Date 22/10/16
+// Date 22/11/16
 const pc_app = document.getElementById("app");
 const head = document.getElementById("head");
 const nav = document.getElementById("nav");
