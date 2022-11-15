@@ -1,0 +1,641 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>OpenStack</title>
+<link href='../container-font.css' rel='stylesheet' type='text/css' />
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+body::-webkit-scrollbar{
+	width: 9px;
+}
+body::-webkit-scrollbar-thumb{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+	background: rgba(0,0,0,0.2);
+}
+body::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+	border-radius: 0;
+	background: rgba(0,0,0,0.1);
+}
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+ :root {--mermaid-font-zoom:1.5em ;} 
+</style>
+</head>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><h1><a name="openstack" class="md-header-anchor"></a><span>OpenStack</span></h1><h2><a name="什么是openstack" class="md-header-anchor"></a><span>什么是openstack？</span></h2><p><span>		</span><span>既是一个社区，也是一个项目和一个开源软件，提供了一个部署云的操作平台或工具集。用OpenStack易于构建虚拟计算或存储服务的云，既可以为公有云、私有云，也可以为大云、小云提供可扩展、灵活的云计算</span></p><p><strong><span>作用：</span></strong><span>用于部署公有云、私有云，并实现对云项目管理</span></p><p><strong><span>开发语言：</span></strong><span>python</span></p><p><strong><span>总结：</span></strong></p><ul><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>是一款开源软件</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>是一个项目</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>是一款云操作系统</span></p></li></ul><h2><a name="核心组件" class="md-header-anchor"></a><span>核心组件</span></h2><blockquote><p><strong><span>云计算的三大核心组件</span></strong></p></blockquote><ul><li><strong><span>计算（compute）</span></strong></li><li><strong><span>网络（networking）</span></strong></li><li><strong><span>存储（storage）</span></strong></li></ul><p><img src="https://user-images.githubusercontent.com/93499895/170647601-defb6575-7ef7-4383-b49e-944bce0b7c9d.png" referrerpolicy="no-referrer"></p><h2><a name="🔺openstack系统架构" class="md-header-anchor"></a><span>🔺openstack系统架构</span></h2><figure><table><thead><tr><th style='text-align:left;' ><span>服务</span></th><th style='text-align:left;' ><span>项目名称</span></th><th style='text-align:left;' ><span>描述</span></th></tr></thead><tbody><tr><td style='text-align:left;' ><span>Compute (计算服务)</span></td><td style='text-align:left;' ><span>🔺Nova</span></td><td style='text-align:left;' ><span>负责实例生命周期的管理，计算资源的单位。对Hypervisor进行屏蔽,支持多种虚拟化技术(红帽默认为KVM)，支持横向扩展</span></td></tr><tr><td style='text-align:left;' ><span>Network (网络服务)</span></td><td style='text-align:left;' ><span>🔺Neutron</span></td><td style='text-align:left;' ><span>负责虚拟网络的管理，为实例创建网络的拓扑结构。是面向租户的网络管理,可以自己定义自己的网络，各个租户之间互不影响</span></td></tr><tr><td style='text-align:left;' ><span>ldentity (身份认证服务)</span></td><td style='text-align:left;' ><span>🔺Keystone</span></td><td style='text-align:left;' ><span>类似于LDAP服务，对用户、租户和角色、服务进行认证与授权，且支持多认证机制</span></td></tr><tr><td style='text-align:left;' ><span>Dashboard (控制面板服务)</span></td><td style='text-align:left;' ><span>Horizon</span></td><td style='text-align:left;' ><span>提供一个Web管理界面，与OpenStack底层服务进行交互</span></td></tr><tr><td style='text-align:left;' ><span>lmage Service (镜像服务)</span></td><td style='text-align:left;' ><span>🔺Glance</span></td><td style='text-align:left;' ><span>提供虚拟机镜像模板的注册与管理，将做好的操作系统拷贝为镜像模板,在创建虚拟机时直接使用，可支持多格式的镜像</span></td></tr><tr><td style='text-align:left;' ><span>Block Storage (块存储服务)</span></td><td style='text-align:left;' ><span>🔺Cinder</span></td><td style='text-align:left;' ><span>负责为运行实例提供持久的块存储设备，可进行方便的扩展，按需付费，支持多种后端存储</span></td></tr><tr><td style='text-align:left;' ><span>Object Storage (对象存储服务)</span></td><td style='text-align:left;' ><span>Swift</span></td><td style='text-align:left;' ><span>为OpenStack提供基于云的弹性存储，支持集群无单点故障</span></td></tr><tr><td style='text-align:left;' ><span>Telemetry (计量服务)</span></td><td style='text-align:left;' ><span>Ceilometer</span></td><td style='text-align:left;' ><span>用于度量、监控和控制数据资源的集中来源，为OpenStack用户提供记账途径</span></td></tr></tbody></table></figure><p><img src="https://user-images.githubusercontent.com/93499895/166214606-e5bf7637-1087-4007-893a-0526a05d4751.jpg" referrerpolicy="no-referrer"></p><h2><a name="组件介绍" class="md-header-anchor"></a><span>组件介绍</span></h2><h3><a name="keystone" class="md-header-anchor"></a><span>keystone</span></h3><h4><a name="什么是keystone" class="md-header-anchor"></a><span>什么是keystone？</span></h4><p><span>		</span><span>Keystone是OpenStack组件之一——Identity Service（认证服务）成立的核心项目。该项目整体上相对于其他项目并不复杂，其类似于一个服务总线，也可以理解为整个OpenStack服务框架的注册表，OpenStack中其他项目通过Keystone可以注册其服务然后获得该服务的Endpoint（服务的访问端口，或者理解为入口），这个Endpiont可以是一个也可以是多个。此外，任何服务之间的调用也需要通过Keystone的认证才能获得目标服务的Endpoint来访问对应服务</span></p><h4><a name="工作原理" class="md-header-anchor"></a><span>工作原理</span></h4><p><img src="https://user-images.githubusercontent.com/93499895/170230204-49459d73-ebe5-4e77-94bd-ec9829777251.jpg" referrerpolicy="no-referrer"></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">一次建立：</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">1、用户首先向Keystone发送如用户密码之类的身份信息（用户名和密码或者用户名和API  key），Keystone验证成功后向用户配发Token；</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">三次请求，三次确认：</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">2、之后用户向Nova发出带有Token的实例创建请求，Nova接收到请求后向Keystone验证Token的有效性，确定该Token是否有效；</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">3、上述的Token被证实有效后，由Nova向Glance服务发出带有Token的镜像传输请求，Glance同样要到Keystone去验证Token的有效性；</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">4、上述的Token被证实有效后Glance向Nova正式提供镜像目录查询和传递服务，Nova获取镜像后继续向Neutron发送带有Token的网络创建服务，再由Neutron向Keystone求证Token的有效性；</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">5、Token被证实有效后，Neutron允许Nova使用网络服务；</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">一个最终结果：</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">6、Nova启动虚拟机成功，同时向用户返回创建实例成功的通知。</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 272px;"></div><div class="CodeMirror-gutters" style="display: none; height: 272px;"></div></div></div></pre><h3><a name="nova" class="md-header-anchor"></a><span>nova</span></h3><h4><a name="什么是nova" class="md-header-anchor"></a><span>什么是nova？</span></h4><p><span>		</span><span>Nova是整个OpenStack最为核心的组件，负责维护和管理云环境的计算资源，同时管理虚拟机生命周期。Nova分为控制节点与计算节点，计算节点通过Nova Computer进行虚拟机创建，通过libvirt调用kvm创建虚拟机，nova之间通信通过rabbitMQ队列进行通信（G版之前，Nova所有组件都会与数据库通信，这样的集中数据库访问在小规模环境下是个不错的选择，但对大集群来说则会产生安全问题，每个节点都具有数据库访问权限，一旦一台服务器被攻破，这个云环境将完全暴露在外，在G版之后，nova-compute所有数据操作均通过消息队列交由nova-conductor来写入或读取数据库，这样就避免了直接访问数据库，提高了安全性，也更加灵活。</span></p><h4><a name="组件及工作原理" class="md-header-anchor"></a><span>组件及工作原理</span></h4><blockquote><p><strong><span>组件</span></strong></p></blockquote><p><span>		</span><span>Nova有很多组件，API服务器（nova-api），计算服务器（nova-compute），网络控制器（nova-network），调度器（nova-schedule），卷控制器（nova-volume），消息队列以及DashBoard。</span></p><ul><li><h3><a name="nova-api" class="md-header-anchor"></a><strong><span>nova-api</span></strong></h3><blockquote><p><span>		</span><span>nova-api实现了RESTful API功能，负责接受和响应终端用户有关虚拟机和云硬盘的请求，提供了openstackAPI、亚马逊EC2API以及管理员控制API。nova-api是整个nova的入口。它接受用户请求，将指令发送至Message Queue（消息队列），由相应的服务执行相关的指令消息。</span></p></blockquote></li><li><h3><a name="nova-compute" class="md-header-anchor"></a><strong><span>nova-compute</span></strong></h3><blockquote><p><span>		</span><span>nova-compute是主要的执行守护进程，职责是基于各种虚拟化技术Hyperivisor实现创建和终止虚拟机。nova-compute有两个工作，接受消息队列中的执行指令，并执行相关指令，如部署虚拟机。维护数据库相关模型的状态数据。</span></p></blockquote></li><li><h3><a name="nova-conductor" class="md-header-anchor"></a><strong><span>nova-conductor</span></strong></h3><blockquote><p><span>		</span><span>nova-conductor module能够协调nova-compute service和Database之间的交互，Conductor为数据库访问提供了一层安全保障。</span></p></blockquote></li><li><h3><a name="nova-network" class="md-header-anchor"></a><strong><span>nova-network</span></strong></h3><blockquote><p><span>		</span><span>nova-network的职责是实现网络资源池的管理,包括IP池，网桥接口，VLAN，防火墙的管理。接受消息队列指令消息并执行。network的职责包括如下：分配私有云，VLAN管理，配置计算节点网络。Nova-network解决云计算网络资源池的网络问题。</span></p></blockquote></li><li><h3><a name="nova-schedule" class="md-header-anchor"></a><strong><span>nova-schedule</span></strong></h3><blockquote><p><span>		</span><span>nova-schedule的职责是调度虚拟机载哪个物理宿主机上部署，接受消息队列指令消息并执行。</span></p><p><span>		</span><span>Queue也就是消息队列，它就像是网络上的一个hub，nova各个组件之间的通信几乎都是靠它进行的，当前的Queue是用RabbitMQ实现的，它和database一起为各个守护进程之间传递消息</span></p><p><span>		</span><span>通过使用消息队列的方式，可以避免nova-compute直接访问数据库，提高安全性。</span></p></blockquote></li><li><h3><a name="nova-volume" class="md-header-anchor"></a><strong><span>nova-volume</span></strong></h3><blockquote><p><span>		</span><span>nova-volume/Cinder的职责是创建，挂载，和卸载持久化的磁盘虚拟机，运行机制类似nova-compute。同样是接受消息队列中的执行指令，并执行相关指令。volume的职责包括如下：创建云硬盘，删除云硬盘，弹性计算硬盘。一句话：就是为虚拟机增加块设备存储。</span></p></blockquote></li><li><h3><a name="queue" class="md-header-anchor"></a><strong><span>Queue</span></strong></h3><blockquote><p><span>		</span><span>queue是Nova 服务组件之间传递信息的中心枢纽。通常使用AMQP(高级消息队列协议Advanced Message Queuing Protocol)的RabbitMQ消息队列来实现。</span></p></blockquote></li></ul><blockquote><p><strong><span>原理</span></strong></p></blockquote><p><img src="https://user-images.githubusercontent.com/93499895/170659740-f0bcc154-2e14-4bb5-82cd-f40af36ca9b0.png" referrerpolicy="no-referrer"></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Step0：nova向keystone询问用户合法性</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Step1：首先用户执行Nova Client提供的用于创建虚拟机的指令</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Step2：nova-api service监听到来自于Nova Client的HTTP请求，并将这些请求转换为AMQP消息之后加入消息队列Queue</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Step3：通过消息队列Queue调用nova-conductor service</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Step4：nova-conductor service从Queue接收到虚拟机实例化请求消息后，进行一些准备工作(EG. 汇总HTTP请求中所需要实例化的虚拟机参数)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Step5：nova-conductor service通过Queue告诉nova-scheduler去选择一个合适的Compute Node来创建虚拟机，此时nova-scheduler会读取数据库的内容</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Step6：nova-conductor从nova-scheduler得到了合适的Compute Node的信息后，在通过Queue来通知nova-compute service实现虚拟机的创建</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">从虚拟机实例化的过程可以看出，Nova中最重要的4个服务之间的通信都是通过Queue来实现的。这符合松耦合的实现方式。</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 272px;"></div><div class="CodeMirror-gutters" style="display: none; height: 272px;"></div></div></div></pre><h3><a name="neutron及网络详解" class="md-header-anchor"></a><span>neutron及网络详解</span></h3><h4><a name="网络详解osi模型" class="md-header-anchor"></a><span>网络详解：OSI模型</span></h4><p><span>		</span><span>意为开放式系统互联。国际标准组织（国际标准化组织）制定了OSI（Open System Interconnection）模型。这个模型把网络通信的工作分为7层,分别是物理层,数据链路层,网络层,传输层,会话层,表示层和应用层。1至4层被认为是低层，这些层与数据移动密切相关。5至7层是高层，包含应用程序级的数据。每一层负责一项具体的工作，然后把数据传送到下一层。</span></p><p><img src="https://user-images.githubusercontent.com/93499895/170666715-cd657378-2e72-4da2-bcc9-3aeb07ee60c5.png" referrerpolicy="no-referrer"></p><blockquote><p><strong><span>图示</span></strong></p></blockquote><p><img src="https://user-images.githubusercontent.com/93499895/170668762-a0df7f4f-8103-4a3f-8017-f83c07b17dbd.png" referrerpolicy="no-referrer"></p><h5><a name="工作设备及七层主要协议" class="md-header-anchor"></a><strong><span>工作设备及七层主要协议</span></strong></h5><blockquote><p><strong><span>工作设备</span></strong></p></blockquote><p><img src="https://user-images.githubusercontent.com/93499895/170671670-ddb75779-ffd3-4236-8199-1b93138cea98.png" referrerpolicy="no-referrer"></p><blockquote><p><strong><span>主要协议</span></strong></p></blockquote><p><img src="https://user-images.githubusercontent.com/93499895/170671699-cb9bf4a9-5f48-44a5-9f0a-f95fbe045457.png" referrerpolicy="no-referrer"></p><h5><a name="七层详解" class="md-header-anchor"></a><span>七层详解</span></h5><h6><a name="应用层" class="md-header-anchor"></a><span>应用层</span></h6><blockquote><p><strong><span>含义：</span></strong><span>OSI参考模型中最靠近用户的一层，是为计算机用户提供应用接口，也为用户直接提供各种网络服务</span></p><p><strong><span>具体功能：</span></strong><span>文件传输，电子邮件，文件服务，虚拟终端</span></p><p><strong><span>举例</span></strong><span>：此处公司A的老板就是我们所说的用户，而他要发送的商业合同，就是应用层提供的一种网络服务。当然，应用层还可以提供很多种服务，比如：快递、信件等等，只是公司A这次恰恰选择了发送商业合同这种服务。</span></p></blockquote><h6><a name="表示层" class="md-header-anchor"></a><span>表示层</span></h6><blockquote><p><strong><span>含义：</span></strong><span>表示层提供各种用于应用层数据的编码和转换功能,确保一个系统的应用层发送的数据能被另一个系统的应用层识别。如果必要，该层可提供一种标准表示形式，用于将计算机内部的多种数据格式转换成通信中    采用的标准表示形式。数据压缩和加密也是表示层可提供的转换功能之一。</span></p><p><strong><span>具体功能：</span></strong><span>数据格式化，代码转换，数据加密</span></p><p><strong><span>举例</span></strong><span>：由于公司A和公司B可能是不同国家的公司，所以他们之间得商量一种统一的语言，进行交流，比如说英语。此时表示层（可以看作是公司的密文），他的工作就是将应用层的传递信息翻译成英语。另外为了防止合同泄密，公司A的人还会对这份合同做一些加密的处理。所以将应用层的数据转换，翻译和加密等，这些都是表示层的作用。</span></p></blockquote><h6><a name="会话层" class="md-header-anchor"></a><span>会话层</span></h6><blockquote><p><strong><span>含义：</span></strong><span>会话层就是负责建立、管理和终止表示层实体之间的通信会话。该层的通信由不同设备中的应用程序之间的服务请求和响应组成。</span></p><p><strong><span>具体功能：</span></strong><span> 解除或者建立与别的接点的联系</span></p><p><strong><span>举例</span></strong><span>：会话层可以看作是公司A的外联部，他们掌握公司A和其他很多公司的联系方式，他们的任务就是管理本公司与外界其它公司的联系工作。会话层在拿到表示层同事翻译加密好的合同之后，他们将会先建立并记录本次会话，然后找到公司B的地址信息，将整份资料放进信封，并写上地址和联系方式，准备将资料寄出。等到确定公司B接收到此份报价单后，此次会话就算结束了。会话层，也就是外联部的员工就会终止此次会话。</span></p></blockquote><h6><a name="传输层" class="md-header-anchor"></a><span>传输层</span></h6><blockquote><p><strong><span>含义：</span></strong><span>传输层建立了主机端到端的链接，传输层的作用是为上层协议提供端到端的可靠和透明的数据传输服务，包括处理差错控制和流量控制等问题。该层向高层屏蔽了下层数据通信的细节，使高层用户看到的只是在两个传输实体间的一条主机到主机的、可由用户控制和设定的、可靠的数据通路。我们通常说的，TCP和UDP就是在这一层。端口号既是这里的“端”。</span></p><p><strong><span>具体功能：</span></strong><span>提供端对端的接口</span></p><p><strong><span>设计本层的主要目的</span></strong></p><p><span>		</span><span>传输层可以提供在不同系统之间的进程间数据交互的可靠服务，在网络内两个实体之间建立端到端（逻辑上的）的通信信道，用来传输信息或报文分组，本层提供两端点可靠、透明的数据传输</span></p><p><span>		</span><span>可以为会话层提供与网络类型无关的可靠信息传输机制，对会话层遮蔽下层网络操作细节</span></p><p><span>		</span><span>分割数据与重组数据、按端口号寻址、连接管理、差错控制和流量控制</span></p><p><strong><span>举例</span></strong><span>：传输层就相当于公司中的负责快递邮件收发的人，也就是公司自己的投递员。他们负责将上一层的要寄出的资料投递到一家靠谱的快递公司或邮局，确保合同能被安全的送达。</span></p></blockquote><h6><a name="网络层" class="md-header-anchor"></a><span>网络层</span></h6><blockquote><p><strong><span>含义：</span></strong><span>本层通过IP寻址来建立两个节点之间的连接，为源端的运输层送来的分组，选择合适的路由和交换节点，正确无误地按照地址传送给目的端的运输层。就是通常说的IP层。这一层就是我们经常说的IP协议层, IP 协议是Internet的基础。</span></p><p><strong><span>具体功能：</span></strong><span>为数据包选择路由</span></p><p><strong><span>设计本层的主要目的</span></strong></p><p><span>		</span><span>负责建立、保持和终止通过中间设备的连接，同时负责通信子网路径选择和拥挤控制</span></p><p><strong><span>举例</span></strong><span>：网络层就相当于快递公司，一个庞大的快递网络，在全国会有很多不同的集散中心。比如说，从深圳发往北京的顺丰快递，首先快递要先到深圳的集散中心，再从深圳的集散中心送到武汉的集散中心，最后再从武汉的集散中心送到北京的集散中心。在这里说的每个集散中心，就相当于网络中的一个IP节点。</span></p></blockquote><h6><a name="数据链路层" class="md-header-anchor"></a><span>数据链路层</span></h6><blockquote><p><strong><span>含义：</span></strong><span>将比特组合成字节,再将字节组合成帧,使用链路层地址 (以太网使用MAC地址)来访问介质,并进行差错检测，数据链路层又分为2个子层：逻辑链路控制子层（LLC）和媒体访问控制子层（MAC）。MAC子层处    理CSMA/CD算法、数据出错校验、成帧等；LLC子层定义了一些字段使上次协议能共享数据链路层。在实际使用中，LLC子层并非必需的。</span></p><p><strong><span>具体功能：</span></strong><span>传输有地址的帧以及错误检测功能</span></p><p><strong><span>举例</span></strong><span>：数据链路层就是准备发送前，需要对其发送的地址进行检查，如果是无效地址就会通知发送方重新填写地址。另外就是对其进行扫描检查，看是否有违禁品。</span></p></blockquote><h6><a name="物理层" class="md-header-anchor"></a><span>物理层</span></h6><blockquote><p><strong><span>含义：</span></strong><span>实际最终信号的传输是通过物理层实现的。通过物理介质传输比特流。规定了电平、速度和电缆针脚。常用设备有（各种物理设备）集线器、中继器、调制解调器、网线、双绞线、同轴电缆。这些都是物理层的传输介质。</span></p><p><strong><span>具体功能：</span></strong><span>使用二进制流的形式传输数据</span></p><p><strong><span>举例</span></strong><span>：快递寄送的过程中的交通工具，就相当于我们的物理层，例如汽车、火车、飞机。轮船等。</span></p></blockquote><h5><a name="工作原理-n169" class="md-header-anchor"></a><span>工作原理</span></h5><blockquote><p><span>数据由传送端的最上层(通常是指应用程序)产生，由上层往下层传送。每经过一层，都在前端增加一些该层专用的信息，这些信息称为报头，然后才传给下一层，可将加上报头想象为套上一层信封。因此到了最底层时，原本的数据已经套上了七层信封，而后通过网线、电话线、光纤等介质，传送到接收端。</span></p></blockquote><blockquote><p><span>接收端接收到数据后，从最底层向上层传送，每经过一层就拆掉一层信封(即去除该层所认识的报头)，直到最上层，数据便恢复成当初从传送端最上层产生时的原貌。</span></p></blockquote><blockquote><p><span>如果以网络的术语来说，这种每一层将原始数据加上报头的操作，便是数据的封装，而封装前的原始数据则称为数据承载。在传送端，上层将数据传给下层，下层将上层传过来的数据当成数据承载，再将数据承载封装成新的数据，继续传给更下层去封装，直到最底层为止。</span></p></blockquote><p><img src="https://user-images.githubusercontent.com/93499895/170673075-e507149b-bfc6-42bc-af05-f59b66f3a3f7.png" referrerpolicy="no-referrer"></p><p><img src="https://user-images.githubusercontent.com/93499895/170674015-80b50d9c-1288-4cfe-99d0-c5e1db2b3339.png" referrerpolicy="no-referrer"></p><h4><a name="nat网络地址转换）" class="md-header-anchor"></a><span>Nat（网络地址转换）</span></h4><blockquote><p><strong><span>NAT（Network Address Translation）</span></strong><span>，是指网络地址转换，1994年提出的。</span></p><p><span>当在专用网内部的一些主机本来已经分配到了本地IP地址（即仅在本专用网内使用的专用地址），但又想和因特网上的主机通信（并不需要加密）时，可使用NAT方法。</span></p><p><span>这种方法需要在专用网（私网IP）连接到因特网（公网IP）的路由器上安装NAT软件。装有NAT软件的路由器叫做NAT路由器，它至少</span><strong><span>有一个有效的外部全球IP地址（公网IP地址）</span></strong><span>。这样，所有使用本地地址（私网IP地址）的主机在和外界通信时，都要在NAT路由器上将其本地地址转换成全球IP地址，才能和因特网连接。</span></p><p><span>另外，这种通过使用少量的全球IP地址（公网IP地址）代表较多的私有IP地址的方式，将有助于减缓可用的IP地址空间的枯竭。在RFC2663中有对NAT的说明。</span></p></blockquote><p><strong><span>NAT的主要技术类型有3种</span></strong></p><ul><li><p><strong><span>静态NAT</span></strong></p><blockquote><p><span>在使用静态NAT之前，网络管理员需要在NAT设备中设置NAT地址映射表，该表确定了一个内部IP地址与一个全局IP地址的对应关系。NAT地址映射表中的内部地址与全局地址一一对应，只要网络管理员不重新设置,这种对应关系将一直保持。</span></p><p><span>特点：内网IP与外网IP一对一一一对应</span></p></blockquote><p><img src="https://user-images.githubusercontent.com/93499895/170851559-b947df4b-a34d-403d-9eb5-9dd08df17886.png" referrerpolicy="no-referrer"></p></li><li><p><strong><span>动态NAT</span></strong></p><blockquote><p><span>在动态NAT方式中，网络管理员首先需要为NAT设备分配一些全局IP地址，这些全局的IP地址构成NAT地址池。</span></p><p><span>当内部主机需要访问外部网络时，NAT设备就在NAT地址池中为该主机选择一个目前未被占用的IP地址，并建立内部IP地址与全局IP地址之间的映射；当该主机本次通信结束时，NAT设备将回收该全局IP地址，并删除NAT地址映射表中对应的映射项，以便其他内部主机访问外部网络时使用。</span></p></blockquote><p><img src="https://user-images.githubusercontent.com/93499895/170851601-b6fcc4b5-1566-423f-b47a-9c16fe6b0fdb.png" referrerpolicy="no-referrer"></p></li><li><p><strong><span>网络地址端口转换NAPT（最常用）</span></strong></p><blockquote><p><span>利用TCP/UDP的端口号区分NAT地址映射表中的转换条目，可以使内部网中的多个主机共享一个（或少数几个）全局IP地址同时访问外部网络。</span></p></blockquote><p><img src="https://user-images.githubusercontent.com/93499895/170851724-ecc7e5fe-425f-40b8-83c6-0766a184fe74.png" referrerpolicy="no-referrer"></p><blockquote><p><span>NAT还可以在一定程度上提高了内部网络的安全性。</span></p><p><span>例如，外部网络的主机不能主动访问内部网络中的主机。即使内部网络中主机192.168.1.67为Web服务器，这是因为这个内部网络对外只有202.113.20.25和202.113.20.26两个IP地址。</span></p></blockquote><p><img src="https://user-images.githubusercontent.com/93499895/170851767-aa173796-05b6-4ee7-b8df-9a88f88777ce.png" referrerpolicy="no-referrer"></p><blockquote><p><span>此时如果动态映射192.168.1.67:80 &lt;·····&gt;202.113.20.25:80 即可通过访问202.113.20.25:80来访问web服务</span></p></blockquote></li></ul><h4><a name="什么是neutron" class="md-header-anchor"></a><span>什么是neutron？</span></h4><p><span>		</span><span>Neutron 的设计目标是实现“网络即服务（Networking as a Service）”。为了达到这一目标，在设计上遵循了基于 SDN 实现网络虚拟化的原则，在实现上充分利用了 Linux 系统上的各种网络相关的技术。</span></p><p>&nbsp;</p></div>
+</body>
+</html>
