@@ -6,6 +6,7 @@ const head = document.getElementById("head");
 const nav = document.getElementById("nav");
 const mobile_head = document.getElementById("mobile_head");
 const tables = document.getElementById("tables");
+var night = false;
 nav.style.display="none";
 app.style.display="none";
 head.style.display="none";
@@ -82,4 +83,14 @@ function reload() {
 }
 function blog_click(string) {
 	window.location.assign(string)
+}
+function changeTonight(){
+	if(night) {
+		// document.getElementById("html").style.-webkit-filter = "brightness("+ "0%" + ")";
+		document.getElementById("html").style.filter = "brightness("+ "100%" + ")";
+		night = false;
+	}else {
+		document.getElementById("html").style.filter = "brightness("+ "75%" + ")";
+		night = true;
+	}
 }
