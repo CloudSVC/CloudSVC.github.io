@@ -1,3 +1,6 @@
+// Author Ny
+// Version V1
+// Date 22/11/16
 const pc_app = document.getElementById("app");
 const head = document.getElementById("head");
 const nav = document.getElementById("nav");
@@ -10,20 +13,20 @@ mobile_head.style.display="none";
 tables.style.transform= "translateX("+ "-280px" +")";
 
 window.onload=function(){
+	setTimeout(function(){
+		document.getElementById("loading").style.display="none";
+	 	app.style.display="";
+		head.style.display="";
+	 	nav.style.display="";
+		mobile_head.style.display="";
+	},1500)
 	// setTimeout(function(){
 	// 	document.getElementById("loading").style.display="none";
 	// 	app.style.display="";
 	// 	head.style.display="";
 	// 	nav.style.display="";
 	// 	mobile_head.style.display="";
-	// },1500)
-	setTimeout(function(){
-		document.getElementById("loading").style.display="none";
-		app.style.display="";
-		head.style.display="";
-		nav.style.display="";
-		mobile_head.style.display="";
-	},10)
+	// },10)
 	
 	
 	// 字幕部分
