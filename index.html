@@ -34,6 +34,7 @@
         color: #ffe392;
         /* 文字居中 */
         text-align: center;
+		position: relative;
     }
 
     table {
@@ -65,15 +66,19 @@
         letter-spacing: 1px;
         word-spacing: 2px;
     }
-
+	#now {
+		width: 100%;
+		height: 10px;
+		margin-bottom: 50px;
+	}
     button {
         background-color: #ef941a;
         color: #fffbe2;
         width: 200px;
         position: relative;
-        border-radius: 5px;
-        margin: 0;
+        border-radius: 8px;
         padding: 0;
+		margin-top: 100px;
         line-height: 0.5;
         cursor: pointer;
         border: none;
@@ -89,8 +94,8 @@
     }
 
     button:active {
-        transform: translate(0px, 2px);
-        -webkit-transform: translate(0px, 2px);
+        transform: translate(0px, 5px);
+        -webkit-transform: translate(0px, 5px);
     }
 </style>
 
@@ -112,15 +117,17 @@
     	        <td id="jeskson4">樂</td>
     	    </tr>
     	</table>
-    	<h2 id="dadaEnglish">(新年快乐)</h2>
+		<div id="now">
+			<h2 id="dadaEnglish">(新年快乐)</h2>
+		</div>
     	<button type="button" id="button">
-    	    <p>新年快乐(快点我)</p>
+    	    <p>Click me(点击)</p>
     	</button>
     </div>
     <script type="text/javascript">
-	window.onload=function(){
-		document.getElementById('bgmSong').play();
-	}
+		window.onload=function(){
+			document.getElementById('bgmSong').play();
+		}
         var pinyin1 = document.getElementById("pinyin1");
         var pinyin2 = document.getElementById("pinyin2");
         var pinyin3 = document.getElementById("pinyin3");
