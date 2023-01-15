@@ -96,7 +96,7 @@
 
 <body>
     <div id="app">
-		<audio src="./audio/春风十里报新年-接个吻，开一枪.mp3" autoplay="autoplay" loop="loop">
+		<audio src="./audio/春风十里报新年-接个吻，开一枪.mp3" id="bgmSong" loop="loop">
 		</audio>
     	<table>
     	    <tr>
@@ -118,6 +118,9 @@
     	</button>
     </div>
     <script type="text/javascript">
+	window.onload=function(){
+		document.getElementById('bgmSong').play();
+	}
         var pinyin1 = document.getElementById("pinyin1");
         var pinyin2 = document.getElementById("pinyin2");
         var pinyin3 = document.getElementById("pinyin3");
