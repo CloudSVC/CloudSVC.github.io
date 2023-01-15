@@ -7,15 +7,21 @@
 </head>
 <style type="text/css">
     @media (min-width: 1100px) {
-        body {
-            transform: rotateZ(0deg);
-        }
+		td {
+		    font-size: 158px;
+		    text-align: center;
+		    font-weight: 700;
+		    padding: 0px;
+		}
     }
 
     @media (max-width: 1100px) {
-        body {
-            transform: rotateZ(90deg);
-        }
+		td {
+		    font-size: 78px;
+		    text-align: center;
+		    font-weight: 700;
+		    padding: 0px;
+		}
     }
 
     body {
@@ -25,7 +31,6 @@
         color: #ffe392;
         /* 文字居中 */
         text-align: center;
-        transition: all .5s;
     }
 
     table {
@@ -43,17 +48,10 @@
         font-weight: 400;
     }
 
-    td {
-        font-size: 158px;
-        text-align: center;
-        font-weight: 700;
-        padding: 0px;
-    }
-
     h2 {
         margin-top: 15px;
         margin-bottom: 100px;
-        font-size: 38px;
+        /* font-size: 38px; */
         text-transform: uppercase;
         font-weight: 700;
         word-spacing: 5px;
@@ -94,24 +92,26 @@
 </style>
 
 <body>
-    <table>
-        <tr>
-            <th class="pinyin" id="pinyin1">xīn</th>
-            <th class="pinyin" id="pinyin2">nián</th>
-            <th class="pinyin" id="pinyin3">kuài</th>
-            <th class="pinyin" id="pinyin4">lè</th>
-        </tr>
-        <tr>
-            <td id="jeskson1">新</td>
-            <td id="jeskson2">年</td>
-            <td id="jeskson3">快</td>
-            <td id="jeskson4">樂</td>
-        </tr>
-    </table>
-    <h2 id="dadaEnglish">(新年快乐)</h2>
-    <button type="button" id="button">
-        <p>新年快乐</p>
-    </button>
+    <div id="app">
+    	<table>
+    	    <tr>
+    	        <th class="pinyin" id="pinyin1">xīn</th>
+    	        <th class="pinyin" id="pinyin2">nián</th>
+    	        <th class="pinyin" id="pinyin3">kuài</th>
+    	        <th class="pinyin" id="pinyin4">lè</th>
+    	    </tr>
+    	    <tr>
+    	        <td id="jeskson1">新</td>
+    	        <td id="jeskson2">年</td>
+    	        <td id="jeskson3">快</td>
+    	        <td id="jeskson4">樂</td>
+    	    </tr>
+    	</table>
+    	<h2 id="dadaEnglish">(新年快乐)</h2>
+    	<button type="button" id="button">
+    	    <p>新年快乐</p>
+    	</button>
+    </div>
     <script type="text/javascript">
         var pinyin1 = document.getElementById("pinyin1");
         var pinyin2 = document.getElementById("pinyin2");
