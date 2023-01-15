@@ -23,6 +23,9 @@
 		    padding: 0px;
 		}
     }
+	* {
+		user-select: none;
+	}
 
     body {
         /* 背景颜色*/
@@ -93,6 +96,8 @@
 
 <body>
     <div id="app">
+		<audio src="./audio/春风十里报新年-接个吻，开一枪.mp3" autoplay="autoplay" loop="loop">
+		</audio>
     	<table>
     	    <tr>
     	        <th class="pinyin" id="pinyin1">xīn</th>
@@ -205,24 +210,24 @@
             "禧"
         ];
         var dadasE = [
-            "(新年快乐)",
-            "(祝贺你的成功)",
-            "(吉星高照)",
-            "(愿一万件事都按你的愿望去发生)",
-            "(年年有鱼)",
-            "(祝您身体健康)",
-            "(愿你心想事成)",
-            "(恭贺新禧)"
+            "(Happy New Year.)",
+            "(May you be happy and prosperous.)",
+            "(good fortune and great profit.)",
+            "(may 10,000 things go according to you wishes.)",
+            "(surplus year after year.)",
+            "(wishing you good health.)",
+            "(may all your wish come true.)",
+            "(congratulations in the new year.)"
         ];
-        pinyin1.textContent = p1[Math.floor(random * p1.length)];
-        pinyin2.textContent = p2[Math.floor(random * p2.length)];
-        pinyin3.textContent = p3[Math.floor(random * p3.length)];
-        pinyin4.textContent = p4[Math.floor(random * p4.length)];
-        jeskson1.textContent = dadasC1[Math.floor(random * dadasC1.length)];
-        jeskson2.textContent = dadasC2[Math.floor(random * dadasC2.length)];
-        jeskson3.textContent = dadasC3[Math.floor(random * dadasC3.length)];
-        jeskson4.textContent = dadasC4[Math.floor(random * dadasC4.length)];
-        dadaEnglish.textContent = dadasE[Math.floor(random * dadasE.length)];
+        pinyin1.textContent = p1[Math.floor(0 * p1.length)];
+        pinyin2.textContent = p2[Math.floor(0 * p2.length)];
+        pinyin3.textContent = p3[Math.floor(0 * p3.length)];
+        pinyin4.textContent = p4[Math.floor(0 * p4.length)];
+        jeskson1.textContent = dadasC1[Math.floor(0 * dadasC1.length)];
+        jeskson2.textContent = dadasC2[Math.floor(0 * dadasC2.length)];
+        jeskson3.textContent = dadasC3[Math.floor(0 * dadasC3.length)];
+        jeskson4.textContent = dadasC4[Math.floor(0 * dadasC4.length)];
+        dadaEnglish.textContent = dadasE[Math.floor(0 * dadasE.length)];
         var onClick = function() {
             var random = Math.random();
             pinyin1.textContent = p1[Math.floor(random * p1.length)];
